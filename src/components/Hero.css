@@ -1,0 +1,258 @@
+/* ═══════════════════════════════════════════════
+   HERO — Dead Center Image Composition
+   ═══════════════════════════════════════════════ */
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Spread left and right text */
+  padding: 6rem clamp(2rem, 8vw, 12rem) 2.5rem;
+  /* Symmetric padding */
+  background: var(--bg);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════
+   LEFT: TEXT CONTENT (Floating over center image)
+   ═══════════════════════════════════════════════ */
+
+.hero-content-left {
+  position: relative;
+  z-index: 10;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.hero-content-right {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  /* Shift slightly up to perfectly align with AKARSH baseline */
+  margin-top: -3rem;
+  /* Push GOPAL closer to the image to visually balance the unequal word lengths */
+  margin-right: 5vw;
+}
+
+.hero-content-left *,
+.hero-content-right * {
+  pointer-events: auto;
+}
+
+.hero-intro {
+  animation: fadeSlideUp 0.8s var(--ease-out) forwards;
+}
+
+.hero-greeting {
+  font-family: var(--ff-sans);
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hero-name {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 6vw, 7.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subheading {
+  font-family: var(--ff-sans);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Buttons */
+.hero-cta-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease-smooth);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  border: 1.5px solid var(--text);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text);
+}
+
+/* ═══════════════════════════════════════════════
+   CENTER: VISUAL AREA (DEAD CENTER, FULL HEIGHT)
+   ═══════════════════════════════════════════════ */
+
+.hero-visual-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-image-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  cursor: crosshair;
+}
+
+/* 
+ * Exact overlap: both images share identical proportions and positioning.
+ * No resizing, jumping, or shifting.
+ */
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.layer-batman {
+  z-index: 1;
+}
+
+/* 
+ * Head-Only Masking Container
+ * Hides the personal photo's body/shoulders so Batman's suit remains visible.
+ */
+.hero-head-mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 54%, transparent 63%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 54%, transparent 63%, transparent 100%);
+}
+
+.layer-photo {
+  /* 
+   * Precise Identity Alignment
+   * Tweak these CSS variables in DevTools to perfectly align your face with Batman's jaw/eyes.
+   */
+  --head-scale: 1.0;
+  --head-x: 0%;
+  --head-y: 0%;
+  transform-origin: center center;
+  transform: scale(var(--head-scale)) translate(var(--head-x), var(--head-y));
+
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.layer-photo.is-revealed {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE (MOBILE)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .hero {
+    position: relative; /* Disable sticky cinematic overlap for standard mobile scroll */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 12vh 1rem 0 1rem;
+    gap: 2rem;
+  }
+
+  .hero-content-left {
+    max-width: 100vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .hero-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content-right {
+    display: none !important;
+  }
+  
+  .mobile-only-name {
+    display: inline;
+  }
+
+  .hero-image-stage {
+    flex: 1; /* Stretch to dynamically fill the rest of the hero section */
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content-right {
+    margin-top: 0;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    /* Stack buttons vertically on very narrow screens */
+    align-items: flex-start;
+  }
+}

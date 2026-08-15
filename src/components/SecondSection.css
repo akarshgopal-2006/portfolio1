@@ -1,0 +1,371 @@
+/* ═══════════════════════════════════════════════
+   SECOND SECTION — F2 & Floating Card
+   ═══════════════════════════════════════════════ */
+
+.second-section {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  /* Needs to slide over the sticky Hero */
+  min-height: 100vh;
+  background: var(--bg);
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.05);
+  /* Slight shadow to emphasize depth overlap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-px);
+  overflow: hidden;
+}
+
+/* ── BACKGROUND VISUAL ── */
+.second-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* Below content */
+  pointer-events: none;
+}
+
+.batman-f2 {
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  object-position: -10vw bottom;
+  /* Shifted left to make room for About text */
+}
+
+/* ── FOREGROUND CONTENT ── */
+.physics-stage {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  /* Space out About Text and Card */
+  align-items: center;
+  height: 100vh;
+  padding-left: clamp(2rem, 8vw, 12rem);
+  padding-right: clamp(2rem, 8vw, 12rem);
+  perspective: 1200px;
+}
+
+/* ── ABOUT ME TEXT ── */
+.about-me-container {
+  max-width: 900px;
+  /* Stretch out horizontally */
+  z-index: 15;
+  margin-left: 18vw;
+  /* Start right after Batman */
+  align-self: flex-start;
+  /* Anchor to the top instead of the center */
+  margin-top: -8vh;
+  /* Pushed significantly into the top margin */
+  user-select: none;
+  /* Prevent accidental text highlighting while playing with card */
+  -webkit-user-select: none;
+}
+
+.about-title {
+  font-family: var(--ff-serif);
+  font-size: 2.5rem;
+  letter-spacing: 5px;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.about-desc {
+  font-family: var(--ff-sans);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Batman Identity Badge Styling */
+.bat-badge {
+  position: relative;
+  /* Standard ID card width */
+  width: 320px;
+  cursor: grab;
+  transform-origin: top center;
+  touch-action: none;
+  /* Tactical glowing aura + heavy drop shadow */
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15)) drop-shadow(0 30px 40px rgba(0, 0, 0, 0.8));
+}
+
+.bat-badge:active {
+  cursor: grabbing;
+}
+
+/* Premium physical hanger */
+.badge-hanger {
+  position: absolute;
+  top: 5px;
+  /* Aligned exactly into the dip between the detailed bat ears */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.badge-pin {
+  position: relative;
+  width: 36px;
+  height: 14px;
+  background: linear-gradient(to bottom, #555, #222);
+  border-radius: 4px;
+  border-bottom: 2px solid #666;
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* SVG dynamic cord */
+.dynamic-cord-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.dynamic-cord-line {
+  stroke: url(#cord-gradient);
+  stroke-width: 4;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Tactical Wayne Enterprises ID Badge Structure */
+.badge-content {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20, 22, 25, 0.85) 0%, rgba(5, 6, 8, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  /* Tactical Sci-Fi Chamfered Corners */
+  clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+  padding: 4rem 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Glowing top edge accent */
+.badge-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+  z-index: 10;
+}
+
+/* Glowing bottom edge accent */
+.badge-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.4), transparent);
+  z-index: 10;
+}
+
+/* Subtle Batman Symbol inside the card */
+.batman-symbol-bg {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+
+/* Hexagon Avatar */
+.badge-avatar {
+  width: 120px;
+  height: 120px;
+  clip-path: circle(50% at 50% 50%);
+  /* Clean circular avatar */
+  background: #333;
+  padding: 4px;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  z-index: 2;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.badge-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.badge-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.badge-text {
+  margin-bottom: 1rem;
+}
+
+.badge-text h2 {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4px;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.badge-text p {
+  font-family: var(--ff-sans);
+  font-size: 0.8rem;
+  color: #777;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Minimalist Action CTA */
+.badge-cta {
+  z-index: 2;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--ff-sans);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.badge-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+
+
+.badge-cta:hover {
+  color: #aaa;
+}
+
+.badge-cta:hover::after {
+  width: 100%;
+  background: #aaa;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE (MOBILE)
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .second-section {
+    position: relative; /* Disable sticky cinematic overlap */
+  }
+
+  .physics-stage {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-left: clamp(1rem, 4vw, 4rem);
+    padding-right: clamp(1rem, 4vw, 4rem);
+    padding-top: 10vh;
+    align-items: center;
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 5vh;
+  }
+
+  .batman-f2 {
+    height: 65vh; 
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    object-position: center bottom;
+  }
+
+  .about-me-container {
+    margin-left: 0;
+    margin-top: 0;
+    max-width: 100%;
+    text-align: center;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .about-title {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .about-desc {
+    font-size: 1rem;
+  }
+
+  .bat-badge {
+    transform: scale(0.85);
+  }
+
+  .badge-content {
+    padding: 3rem 1.5rem 4rem;
+    gap: 1rem;
+  }
+
+  .badge-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .badge-text h2 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .badge-text p {
+    font-size: 0.7rem;
+  }
+
+  .badge-cta {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bat-badge {
+    transform: scale(0.85);
+    margin-top: 1rem; /* Bring card closer to text, avoiding the huge blank space */
+  }
+  .about-title {
+    font-size: 2rem;
+  }
+}

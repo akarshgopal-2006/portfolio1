@@ -1,0 +1,183 @@
+/* ═══════════════════════════════════════════════
+   THIRD SECTION — Experience & Skills
+   ═══════════════════════════════════════════════ */
+
+.third-section {
+  position: relative;
+  z-index: 3; /* Slides over SecondSection smoothly */
+  min-height: 100vh;
+  background: var(--bg);
+  box-shadow: 0 -20px 50px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── LEFT COLUMN ── */
+.third-content-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8vh 4vw 8vh 8vw; /* Matches the left alignment of Hero */
+  z-index: 2;
+}
+
+.resume-container {
+  max-width: 700px;
+}
+
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: #333;
+}
+
+.mt-xl {
+  margin-top: 4rem;
+}
+
+/* Experience */
+.resume-block {
+  margin-bottom: 2rem;
+}
+
+.job-title {
+  font-family: var(--ff-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.job-meta {
+  font-family: var(--ff-sans);
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.job-date {
+  color: #888;
+}
+
+.job-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-bullets li {
+  font-family: var(--ff-sans);
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.job-bullets li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #111;
+  font-size: 1.2rem;
+}
+
+/* Skills */
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-category h4 {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.skill-category p {
+  font-family: var(--ff-sans);
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── RIGHT COLUMN ── */
+.third-visual-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end; /* Anchor Batman to the bottom */
+  justify-content: flex-end; /* Anchor Batman to the right */
+  pointer-events: auto;
+}
+
+.batman-f4 {
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  object-position: right bottom;
+  /* Cinematic subtle fade is handled by Framer Motion */
+}
+
+/* ── RESPONSIVE (MOBILE) ── */
+@media (max-width: 992px) {
+  .third-section {
+    flex-direction: column;
+  }
+  
+  .third-content-left {
+    padding: 10vh 6vw 2vh 6vw; /* Reduce bottom padding to connect with image */
+  }
+  
+  .third-visual-right {
+    height: 60vh; /* Give batman some space */
+    justify-content: center;
+  }
+  
+  .batman-f4 {
+    height: 100%;
+    object-position: center bottom;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .job-title {
+    font-size: 1.3rem;
+  }
+  .third-visual-right {
+    height: 50vh;
+  }
+}

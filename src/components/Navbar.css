@@ -1,0 +1,103 @@
+/* ═══════════════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--section-px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 249, 247, .72);
+  border-bottom: 1px solid rgba(0, 0, 0, .04);
+}
+
+.nav-logo {
+  font-family: var(--ff-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.accent-dot {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.25rem;
+}
+
+.nav-links a {
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-smooth);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width .35s var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 1rem clamp(1rem, 4vw, 2rem);
+  }
+  .nav-links {
+    gap: 1.25rem;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+  }
+  .nav-logo {
+    font-size: 1.1rem;
+  }
+}
+
+/* ── NOTIFICATION POPUP ── */
+.notification-popup {
+  position: fixed;
+  top: 100px;
+  right: 5vw;
+  background: var(--text);
+  color: var(--bg);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-family: var(--ff-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: slideInDown 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+             fadeOutUp 0.3s ease-in 1.2s forwards;
+  pointer-events: none;
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}

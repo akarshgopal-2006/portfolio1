@@ -1,0 +1,242 @@
+/* ═══════════════════════════════════════════════
+   FOOTER — Cinematic Final Section
+   ═══════════════════════════════════════════════ */
+
+.footer-section {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Smooth transition for the environment darkening */
+  transition: background 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-section.state-1,
+.footer-section.state-2,
+.footer-section.state-3 {
+  background: var(--bg); /* Keep it white/base color */
+}
+
+.footer-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── SECRET BUTTON ── */
+.secret-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  color: #bbb;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 10;
+  font-style: italic;
+}
+
+.secret-btn:hover {
+  color: #111;
+  transform: scale(0.95);
+  text-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.footer-section.state-0 .secret-btn:hover {
+  color: #000;
+}
+
+/* ── CINEMATIC BATMAN REVEAL ── */
+.batman-reveal-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.batman-footer-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  object-position: center bottom;
+  
+  /* Initial Hidden State */
+  opacity: 0;
+  transform: scale(1.1) translateY(80px);
+  filter: blur(30px) brightness(0);
+  transition: all 5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Very slow cinematic reveal */
+}
+
+/* State 2: Batman slowly reveals from darkness */
+.batman-reveal-wrapper.state-2 .batman-footer-img,
+.batman-reveal-wrapper.state-3 .batman-footer-img {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px) brightness(1);
+}
+
+/* ── "I AM MAN" TEXT SPLIT ── */
+.batman-text-split {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 clamp(2rem, 8vw, 12rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.iam-batman-text {
+  font-family: var(--ff-serif);
+  font-size: clamp(3rem, 10vw, 10rem);
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 5px;
+  margin: 0;
+  
+  /* Initial Hidden State */
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(20px);
+  transition: all 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.iam-batman-text.right {
+  margin-right: 4vw; /* Balance distance from Batman's body */
+}
+
+/* State 3: Text reveals */
+.batman-reveal-wrapper.state-3 .iam-batman-text {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* ── CONTACT REVEAL SEQUENCE ── */
+.contact-reveal-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 2s ease-in-out;
+  z-index: 10;
+}
+
+.contact-reveal-wrapper.state-5 {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.stay-connected-text {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3rem;
+  letter-spacing: 4px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  color: var(--text);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+}
+
+/* Liquid Glass Effect */
+.glass-effect {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.05),
+    inset 0px 2px 5px rgba(255, 255, 255, 1),
+    inset 0px -2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-effect:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0px 2px 5px rgba(255, 255, 255, 1),
+    inset 0px -2px 5px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4));
+}
+
+.contact-link svg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+.contact-link:hover svg {
+  transform: scale(1.1);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .batman-footer-img {
+    height: 80vh;
+  }
+  
+  .iam-batman-text {
+    font-size: clamp(2rem, 12vw, 4rem);
+    letter-spacing: 2px;
+  }
+
+  .iam-batman-text.right {
+    margin-right: 0;
+  }
+
+  .batman-text-split {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-links {
+    gap: 1rem;
+  }
+  .contact-link {
+    width: 60px;
+    height: 60px;
+  }
+  .stay-connected-text {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+}
