@@ -72,7 +72,7 @@ export default function Footer() {
         <div className={`batman-reveal-wrapper state-${revealState}`}>
           {/* Exactly reusing the Hero Batman image */}
           <img
-            src="/batman.png"
+            src={`${import.meta.env.BASE_URL}batman.png`}
             alt="Batman Reveal"
             className="batman-footer-img"
             draggable={false}

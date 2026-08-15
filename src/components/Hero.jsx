@@ -123,14 +123,14 @@ export default function Hero() {
           style={{ cursor: hovered ? 'crosshair' : 'default' }}
         >
           <img
-            src="/batman.png"
+            src={`${import.meta.env.BASE_URL}batman.png`}
             alt="Batman"
             className="hero-layer layer-batman"
             draggable={false}
           />
           <div className="hero-head-mask">
             <img
-              src="/me.png"
+              src={`${import.meta.env.BASE_URL}me.png`}
               alt="Akarsh Sharma"
               className={`hero-layer layer-photo ${hovered ? 'is-revealed' : ''}`}
               draggable={false}

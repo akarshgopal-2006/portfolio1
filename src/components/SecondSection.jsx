@@ -167,7 +167,7 @@ export default function SecondSection() {
         viewport={{ once: true, amount: 0.2 }}
       >
         <img 
-          src="/f2.png" 
+          src={`${import.meta.env.BASE_URL}f2.png`} 
           alt="Batman Half Turned" 
           className="batman-f2" 
           draggable={false} 
@@ -235,7 +235,7 @@ export default function SecondSection() {
               </svg>
 
               <div className="badge-avatar">
-                <img src="/me.png" alt="Akarsh Gopal" draggable={false} />
+                <img src={`${import.meta.env.BASE_URL}me.png`} alt="Akarsh Gopal" draggable={false} />
               </div>
               
               <div className="badge-info">

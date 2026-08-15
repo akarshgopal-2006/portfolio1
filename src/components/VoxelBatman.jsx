@@ -14,7 +14,7 @@ export default function VoxelBatman({ style, className }) {
     let animationId;
 
     const img = new Image();
-    img.src = '/f4.png';
+    img.src = `${import.meta.env.BASE_URL}f4.png`;
     img.onload = () => {
 
       const resize = () => {
